@@ -1,44 +1,44 @@
 import React from 'react'
 
-const ProductList = () => {
+const ProductList = ({products}) => {
 
-  const products = [
-    {
-      id: 1,
-      name: "iMac Green Energy",
-      category: "Desktops",
-      price: 24000000,
-      image: "./assets/image/thumbnails/color_back_green__buxxfjccqjzm_large_2x-Photoroom 1.png"
-    },
-    {
-      id: 2,
-      name: "Smartwei Pro 18",
-      category: "Phones",
-      price: 11000000,
-      image: "./assets/image/thumbnails/iphone15pro-digitalmat-gallery-3-202309-Photoroom 1.png"
-    },
-    {
-      id: 3,
-      name: "MacBook Pro X",
-      category: "Laptops",
-      price: 24000000,
-      image: "./assets/image/thumbnails/mba13-m2-digitalmat-gallery-1-202402-Photoroom 2.png"
-    },
-    {
-      id: 4,
-      name: "Tuli Nyaman",
-      category: "Headsets",
-      price: 3500000000,
-      image: "./assets/image/thumbnails/airpods-max-select-skyblue-202011-Photoroom 1.png"
-    },
-    {
-      id: 5,
-      name: "Warna iMac Jadi",
-      category: "Desktops",
-      price: 89000000,
-      image: "./assets/image/thumbnails/imac24-digitalmat-gallery-1-202310-Photoroom 1.png"
-    }
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "iMac Green Energy",
+  //     category: "Desktops",
+  //     price: 24000000,
+  //     image: "./assets/image/thumbnails/color_back_green__buxxfjccqjzm_large_2x-Photoroom 1.png"
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Smartwei Pro 18",
+  //     category: "Phones",
+  //     price: 11000000,
+  //     image: "./assets/image/thumbnails/iphone15pro-digitalmat-gallery-3-202309-Photoroom 1.png"
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "MacBook Pro X",
+  //     category: "Laptops",
+  //     price: 24000000,
+  //     image: "./assets/image/thumbnails/mba13-m2-digitalmat-gallery-1-202402-Photoroom 2.png"
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Tuli Nyaman",
+  //     category: "Headsets",
+  //     price: 3500000000,
+  //     image: "./assets/image/thumbnails/airpods-max-select-skyblue-202011-Photoroom 1.png"
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Warna iMac Jadi",
+  //     category: "Desktops",
+  //     price: 89000000,
+  //     image: "./assets/image/thumbnails/imac24-digitalmat-gallery-1-202310-Photoroom 1.png"
+  //   }
+  // ];
 
   const formatPrice = (price) => {
     return `Rp ${price.toLocaleString("id-ID")}`;
