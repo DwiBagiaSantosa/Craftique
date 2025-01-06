@@ -8,10 +8,10 @@ const FormAuth = ({isRegister}) => {
     <>
         <div className='h-screen grid place-items-center'>
             <Form className='card w-[400px] p-8 bg-slate-100 shadow-lg flex flex-col gap-y-4'>
-                <img src={logo} alt="" className="inline-flex h-[50px]" />
-                <h3 className='text-center text-2xl font-medium mt-6'>Log in</h3>
+                <img src={logo} alt="" className="inline-flex h-[70px]" />
+                <h3 className='text-center text-2xl font-medium mt-6'>{ isRegister ? 'Register' : 'Log in'}</h3>
                 {isRegister ? (
-                    <FormInput label="username" type="text" name="name" placeholder="Enter your username"/>
+                    <FormInput label="Username" type="text" name="name" placeholder="Enter your username"/>
                 ) : null}
                 <FormInput label="Email" type="text" name="email" placeholder="Enter your email" />
                 <FormInput label="Password" type="password" name="password" placeholder="Enter your password" />

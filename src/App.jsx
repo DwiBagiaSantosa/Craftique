@@ -5,6 +5,7 @@ import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 // Loader
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />
+  },
+  {
+    path: "register",
+    element: <Register />
   }
 ])
 
