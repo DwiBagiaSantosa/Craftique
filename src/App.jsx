@@ -8,8 +8,14 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 
 // Loader
-
 import { loader as homeLoader } from "./pages/Home.jsx"
+
+// Action
+import { action as RegisterAction } from "./pages/auth/Register.jsx"
+
+// Store
+import { store } from "./store";
+
 
 const router = createBrowserRouter([
   {
@@ -33,14 +39,24 @@ const router = createBrowserRouter([
   },
   {
     path: "register",
-    element: <Register />
+    element: <Register />,
+    action: RegisterAction(store)
   }
 ])
 
 function App() {
 
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider 
+      router={router} 
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_skipActionErrorRevalidation: true
+      }}
+   />
   )
 }
 

@@ -25,8 +25,8 @@ const Navbar = () => {
                             <span className='badge badge-xs indicator-item badge-primary'>0</span>
                         </div>
                     </NavLink>
-                    <button className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign In</button>
-                    <button className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign Up</button>
+                    <Link to={'/login'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign In</Link>
+                    <Link to={'/register'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign Up</Link>
                 </div>
             </nav>
         </nav> 

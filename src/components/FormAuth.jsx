@@ -7,7 +7,7 @@ const FormAuth = ({isRegister}) => {
   return (
     <>
         <div className='h-screen grid place-items-center'>
-            <Form className='card w-[400px] p-8 bg-slate-100 shadow-lg flex flex-col gap-y-4'>
+            <Form method="POST" className='card w-[400px] p-8 bg-slate-100 shadow-lg flex flex-col gap-y-4'>
                 <img src={logo} alt="" className="inline-flex h-[70px]" />
                 <h3 className='text-center text-2xl font-medium mt-6'>{ isRegister ? 'Register' : 'Log in'}</h3>
                 {isRegister ? (
