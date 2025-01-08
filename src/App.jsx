@@ -12,6 +12,7 @@ import { loader as homeLoader } from "./pages/Home.jsx"
 
 // Action
 import { action as RegisterAction } from "./pages/auth/Register.jsx"
+import { action as LoginAction } from "./pages/auth/Login.jsx"
 
 // Store
 import { store } from "./store";
@@ -35,7 +36,8 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Login />
+    element: <Login />,
+    action: LoginAction(store)
   },
   {
     path: "register",

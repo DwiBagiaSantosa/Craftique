@@ -1,9 +1,27 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import logo from '../assets/logos/craftique-logo3.svg'
 import { BsCart } from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
+import customAPI from '../api'
+import { logout } from '../features/userSlice'
 
 const Navbar = () => {
+    const user = useSelector((state) => state.userState.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleLogout = async() => {
+        try {
+            await customAPI.get('/auth/logout')
+            dispatch(logout())
+            navigate('/')
+        } catch (error) {
+            dispatch(logout())
+            navigate('/')
+        }
+    }
+
   return (
     <>
         <nav className='fixed top-[30px] inset-x-0 max-w-[1280px] w-full mx-auto px-[75px]'>
@@ -25,8 +43,22 @@ const Navbar = () => {
                             <span className='badge badge-xs indicator-item badge-primary'>0</span>
                         </div>
                     </NavLink>
-                    <Link to={'/login'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign In</Link>
-                    <Link to={'/register'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign Up</Link>
+                    {user ? (
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn text-white font-normal">Hello, {user.name.length > 12 ? `${user.name.slice(0, 12)}...` : user.name}</div>
+                            <ul
+                                tabIndex={0}
+                                className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                                <li><a>Profile</a></li>
+                                <li><button onClick={handleLogout}>Logout</button></li>
+                            </ul>
+                        </div>
+                    ) : (
+                        <>
+                            <Link to={'/login'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign In</Link>
+                            <Link to={'/register'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign Up</Link>
+                        </>
+                    )}
                 </div>
             </nav>
         </nav> 
