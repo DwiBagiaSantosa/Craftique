@@ -57,7 +57,7 @@ const ProductList = ({products}) => {
 
         <div className="grid-cols-5 grid gap-[30px]">
           {products.map((product) => (
-              <a href="" key={product.id}>
+              <a href="" key={product._id}>
                 <div className="p-5 rounded-[20px] border border-[#867F87] bg-[#EFF3FA] space-y-6 hover:ring-2 transition-all duration-300 hover:ring-secondary hover:border-transparent">
                   <img src={product.image} alt="" className="mx-auto h-[90px]" />
                   <div className="space-y-[10px]">
