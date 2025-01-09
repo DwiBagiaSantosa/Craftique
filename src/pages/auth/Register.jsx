@@ -3,6 +3,7 @@ import FormAuth from '../../components/FormAuth'
 import customAPI from '../../api'
 import { register } from '../../features/userSlice'
 import { redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export const action = (store) => async ({ request }) =>{
   // console.log(store)
@@ -17,11 +18,12 @@ export const action = (store) => async ({ request }) =>{
     console.log("🚀 ~ action ~ response:", response)
 
     store.dispatch(register(response.data))
-
+    toast.success('Register Success')
     return redirect('/')
     
   } catch (error) {
     const errorMessage = error?.response?.data?.message
+    toast.error(errorMessage)
     return null
   }
 }

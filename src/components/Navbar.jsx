@@ -5,6 +5,7 @@ import { BsCart } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import customAPI from '../api'
 import { logout } from '../features/userSlice'
+import { toast } from 'react-toastify'
 
 const Navbar = () => {
     const user = useSelector((state) => state.userState.user)
@@ -15,9 +16,11 @@ const Navbar = () => {
         try {
             await customAPI.get('/auth/logout')
             dispatch(logout())
+            toast.success('Log out successfully')
             navigate('/')
         } catch (error) {
             dispatch(logout())
+            toast.error('Log out failed')
             navigate('/')
         }
     }

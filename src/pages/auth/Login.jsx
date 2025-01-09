@@ -3,6 +3,7 @@ import FormAuth from '../../components/FormAuth'
 import customAPI from '../../api'
 import { login } from '../../features/userSlice'
 import { redirect } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export const action = (store) => async ({ request }) => {
   const formInputData = await request.formData()
@@ -13,10 +14,12 @@ export const action = (store) => async ({ request }) => {
     console.log("🚀 ~ action ~ response:", response)
 
     store.dispatch(login(response.data))
+    toast.success('Login Success')
     return redirect('/')
   } catch (error) {
     const errorMessage = error?.response?.data?.message
-    console.log(errorMessage)
+    // console.log(errorMessage)
+    toast.error(errorMessage)
     return null 
   }
 }
