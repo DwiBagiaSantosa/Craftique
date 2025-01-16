@@ -1,11 +1,24 @@
 import React from 'react'
 import ProductCarousel from '../components/ProductCarousel'
+import { useLoaderData } from 'react-router-dom'
+import ProductList from '../components/ProductList'
+import customAPI from '../api'
+
+// test
+export const loader = async({request}) => {
+  const { data } = await customAPI.get('/product')
+  const products = data.data
+
+  return { products }
+}
 
 const ProductDetails = () => {
     const productImages = [
         'https://res.cloudinary.com/dpkxj8hdf/image/upload/v1736001235/uploads/bwilxqdinpfsosprqbua.png',
         'https://res.cloudinary.com/dpkxj8hdf/image/upload/v1736001235/uploads/owv2rvzvijyimbngslts.png',
     ]
+
+    const { products } = useLoaderData()
 
   return (
     <>
@@ -32,6 +45,7 @@ const ProductDetails = () => {
                 </div>
             </div>
         </div>
+            <ProductList products={products}/>
         
             
       </div>
