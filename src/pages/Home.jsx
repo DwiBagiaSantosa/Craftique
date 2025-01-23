@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <Hero />
       <Categories />
-      <ProductList products={products}/>
+      <ProductList products={products} title="Our Products"/>
     </>
   )
 }

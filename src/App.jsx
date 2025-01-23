@@ -6,9 +6,11 @@ import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import ProductDetails from "./pages/ProductDetails";
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
+// import { loader as similiarProductLoader } from "./pages/ProductDetails.jsx"
 
 // Action
 import { action as RegisterAction } from "./pages/auth/Register.jsx"
@@ -16,6 +18,7 @@ import { action as LoginAction } from "./pages/auth/Login.jsx"
 
 // Store
 import { store } from "./store";
+
 
 
 const router = createBrowserRouter([
@@ -31,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Product />
+      },
+      {
+        path: "products/:id",
+        element: <ProductDetails />,
       }
     ]
   },
