@@ -27,9 +27,12 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className='fixed top-[30px] inset-x-0 max-w-[1380px] w-full mx-auto px-[75px]'>
+        <nav className='fixed top-[30px] inset-x-0 z-50 max-w-[1380px] w-full mx-auto px-[75px]'>
             <nav className='flex justify-between items-center w-full mx-auto bg-primary p-5 rounded-3xl'>
-                <img src={logo} alt="" className="inline-flex h-[50px]" />
+                <Link to='/'>
+                    <img src={logo} alt="" className="inline-flex h-[50px]" />
+                </Link>
+                
                 <ul className='flex space-x-[30px] text-white font-normal'>
                     <li className='hover:text-secondary duration-300 transition-all'>
                         <Link>Shop</Link>
