@@ -4,7 +4,7 @@ import hero from '../assets/hero-craftique.jpg'
 const Hero = () => {
   return (
     <section className="w-full bg-[#EFF3FA] pt-[170px] pb-[50px]">
-        <div className="max-w-[1280px] mx-auto flex justify-between items-center px-[75px]">
+        <div className="max-w-[1380px] mx-auto flex justify-between items-center px-[75px]">
           <div className="space-y-[30px]">
             <h1 className="font-bold text-[55px] leading-[55px]">Where Art  Meets <br /> Passion</h1>
             <p className="text-[#6A7789] text-lg leading-[34px]">
