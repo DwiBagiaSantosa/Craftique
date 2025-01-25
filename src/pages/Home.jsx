@@ -14,6 +14,7 @@ export const loader = async({request}) => {
 
 const Home = () => {
 
+  
   const { products } = useLoaderData()
   return (
     <>
