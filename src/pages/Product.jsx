@@ -3,14 +3,17 @@ import Filter from '../components/Filter'
 import ProductCard from '../components/ProductCard'
 import { useLoaderData } from 'react-router-dom'
 import customAPI from '../api'
+import Pagination from '../components/Pagination'
 
 export const loader = async({request}) => {
   const params = Object.fromEntries([...new URL(request.url).searchParams.entries()])
   const { data } = await customAPI.get('/product', {params: params})
 
   const products = data.data
+  // console.log("🚀 ~ loader ~ products:", products)
 
   const pagination = data.pagination
+  console.log("🚀 ~ loader ~ pagination:", pagination)
 
   return { products, pagination, params }
 }
@@ -32,21 +35,7 @@ const Product = () => {
   const categoryName = params.category ? categories[params.category] || "All Products" : "All Products";
   return (
     <>
-      {/* <div className='w-full bg-[#EFF3FA] pt-[170px] pb-[50px]'>
-        <div className='max-w-[1380px] mx-auto grid grid-cols-4 px-[75px]'>
-          <div className='border border-[#867F87] bg-[#EFF3FA] '>1</div>
-          <div className='border border-[#867F87] bg-[#EFF3FA] col-span-3'>2</div>
-          
-        </div>
-        <div className='max-w-[1380px] mx-auto grid grid-cols-4 px-[75px]'>
-            <div className='border border-[#867F87] bg-[#EFF3FA]'>1</div>
-            <div className='border border-[#867F87] bg-[#EFF3FA]'>1</div>
-            <div className='border border-[#867F87] bg-[#EFF3FA]'>1</div>
-            <div className='border border-[#867F87] bg-[#EFF3FA]'>1</div>
-          </div>
-      </div> */}
       <div className='w-full bg-[#EFF3FA] pt-[170px] pb-[50px]'>
-        <div className="">
           <div className="max-w-[1380px] mx-auto grid grid-cols-12 gap-6 px-[75px]">
             {/* Filters Sidebar */}
             <Filter />
@@ -63,7 +52,12 @@ const Product = () => {
 
               {/* Product Card */}
               { products.length > 0 ? (
-                <ProductCard products={products}/>
+                <>
+                  <ProductCard products={products}/>
+                  <div className='flex justify-center mt-6'>
+                    <Pagination />
+                  </div>
+                </>
               ) : (
                 <div className="text-center py-10">
                   <h2 className="text-2xl font-bold text-gray-600">No Products Found</h2>
@@ -71,9 +65,9 @@ const Product = () => {
                 </div>
               )}
               
+              
             </div>
           </div>
-        </div>
       </div>
     </>
   )
