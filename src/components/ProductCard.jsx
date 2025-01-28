@@ -1,27 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-const ProductList = ({products, title}) => {
+const ProductCard = ({products}) => {
 
-  const formatPrice = (price) => {
-    return `Rp ${price.toLocaleString("id-ID")}`;
-  };
-  
+    const formatPrice = (price) => {
+        return `Rp ${price.toLocaleString("id-ID")}`;
+    };
 
   return (
     <>
-      <section className="max-w-[1380px] mx-auto w-full space-y-[30px] px-[75px]">
-        <div className="flex items-center justify-between">
-          <h1 className="font-bold text-2xl leading-[34px]">
-            {title}
-          </h1>
-          <button className="rounded-full border py-3 px-6 font-semibold border-[#867F87] bg-[#EFF3FA]">Explore All</button>
-        </div>
-
-        <div className="grid-cols-5 grid gap-[30px]">
+      <div className="grid grid-cols-4 gap-6">
           {products.map((product) => (
               <Link to={`/products/${product._id}`} key={product._id}>
-                <div className="w-full max-w-[240px] bg-[#EFF3FA] rounded-xl overflow-hidden border border-[#DDDDDD] hover:shadow-lg transition-shadow">
+                {/* <div className="p-5 min-h-[257px] rounded-[20px] border border-[#DDDDDD] space-y-6 hover:shadow-lg transition-shadow">
+                  <img src={product.images} alt="" className="mx-auto h-[100px]" />
+                  <div className="space-y-[10px]">
+                    <div className="space-y-1">
+                      <h1 className="font-semibold leading-[22px]">{product.name}</h1>
+                      <p className="text-sm leading-[21px]">{product.category}</p>
+                    </div>
+                    <p className="font-semibold text-primary leading-[22px]"> {formatPrice(product.price)}</p>
+                  </div>
+                </div> */}
+
+                <div className="w-full max-w-[240px] bg-white rounded-xl overflow-hidden border border-[#DDDDDD] hover:shadow-lg transition-shadow">
                   {/* Product Image */}
                   <div className="relative">
                     <img
@@ -51,9 +53,8 @@ const ProductList = ({products, title}) => {
               </Link>
           ))}
         </div>
-      </section>
     </>
   )
 }
 
-export default ProductList
+export default ProductCard

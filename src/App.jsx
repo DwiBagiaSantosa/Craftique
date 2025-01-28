@@ -10,6 +10,7 @@ import ProductDetails from "./pages/ProductDetails";
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
+import { loader as productLoader } from "./pages/Product.jsx"
 // import { loader as similiarProductLoader } from "./pages/ProductDetails.jsx"
 
 // Action
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <Product />
+        element: <Product />,
+        loader: productLoader
       },
       {
         path: "products/:id",

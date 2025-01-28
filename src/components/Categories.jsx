@@ -22,7 +22,7 @@ const Categories = () => {
 
   return (
     <>
-      <section className="max-w-[1280px] mx-auto w-full space-y-[30px] px-[75px]">
+      <section className="max-w-[1380px] mx-auto w-full space-y-[30px] px-[75px]">
         <div className="flex items-center justify-between ">
           <h1 className="font-bold text-2xl leading-[34px] ">
             Browse Products <br />
