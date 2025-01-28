@@ -4,6 +4,7 @@ import { GiColombianStatue, GiPaintedPottery, GiBrickWall, GiCeremonialMask  } f
 import { PiSignatureBold } from "react-icons/pi";
 import { SiOpencollective } from "react-icons/si";
 import { BiChair } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,11 +29,11 @@ const Categories = () => {
             Browse Products <br />
             by Categories
           </h1>
-          <button className="rounded-full border py-3 px-6 font-semibold border-[#867F87] bg-[#EFF3FA]">Explore All</button>
+          <Link to="/products" className="btn rounded-full border py-3 px-6 font-semibold border-[#867F87] bg-[#EFF3FA]">Explore All</Link>
         </div>
         <div className="grid grid-cols-4 gap-[30px]">
           {categories.map((category, index) => (
-            <div key={index} className='rounded-[20px] border border-[#867F87] bg-[#EFF3FA] p-5 space-x-[14px] flex items-center hover:ring-2 transition-all duration-300 hover:ring-secondary hover:border-transparent'>
+            <Link to={`/products?category=${category.name}`} key={index} className='rounded-[20px] border border-[#867F87] bg-[#EFF3FA] p-5 space-x-[14px] flex items-center hover:ring-2 transition-all duration-300 hover:ring-secondary hover:border-transparent'>
               <div className='h-12 w-12 bg-primary grid place-items-center rounded-full'>
                 {category.icon}
               </div>
@@ -40,7 +41,7 @@ const Categories = () => {
                 <h1 className='font-semibold'>{category.name}</h1>
                 <p className='text-sm text-[#616369]'>{category.products.toLocaleString()} products</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
