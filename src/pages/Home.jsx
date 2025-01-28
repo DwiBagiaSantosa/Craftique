@@ -6,7 +6,7 @@ import customAPI from '../api'
 import { useLoaderData } from 'react-router-dom'
 
 export const loader = async({request}) => {
-  const { data } = await customAPI.get('/product')
+  const { data } = await customAPI.get('/product?limit=5')
   const products = data.data
 
   return { products }
@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <Hero />
       <Categories />
-      <ProductList products={products} title="Our Products"/>
+      <ProductList products={products} title="New Products"/>
     </>
   )
 }

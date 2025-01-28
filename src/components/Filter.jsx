@@ -18,7 +18,7 @@ const Filter = () => {
 
   return (
     <>
-        <Form method="get" className="col-span-3 space-y-4 border border-[#DDDDDD] p-5 rounded-[20px]">
+        <Form method="get" className="col-span-3 space-y-4 bg-white border border-[#DDDDDD] p-5 rounded-[20px]">
             <h2 className="font-bold text-lg text-center">Filters</h2>
             <div className="divider"></div>
             <div>

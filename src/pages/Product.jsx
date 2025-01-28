@@ -35,8 +35,8 @@ const Product = () => {
   const categoryName = params.category ? categories[params.category] || "All Products" : "All Products";
   return (
     <>
-      <div className='w-full bg-[#EFF3FA] pt-[170px] pb-[50px]'>
-          <div className="max-w-[1380px] mx-auto grid grid-cols-12 gap-6 px-[75px]">
+      <div className='w-full bg-white pt-[170px] pb-[50px]'>
+          <div className="max-w-[1380px] mx-auto grid grid-cols-12 gap-6 px-[75px] items-start">
             {/* Filters Sidebar */}
             <Filter />
 
