@@ -19,6 +19,10 @@ import { action as LoginAction } from "./pages/auth/Login.jsx"
 
 // Store
 import { store } from "./store";
+import Cart from "./pages/Cart.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { initializeCart } from "./features/cartSlice.js";
 
 
 
@@ -40,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "products/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       }
     ]
   },
@@ -56,6 +64,14 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.userState.user)
+
+  useEffect(() => {
+    //  initialize the cart when the app loads
+    const userId = user?._id;
+    dispatch(initializeCart({ userId }))
+  }, [dispatch, user])
 
   return (
     <RouterProvider 
