@@ -4,6 +4,7 @@ import customAPI from '../../api'
 import { login } from '../../features/userSlice'
 import { redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { initializeCart } from '../../features/cartSlice'
 
 export const action = (store) => async ({ request }) => {
   const formInputData = await request.formData()
@@ -11,9 +12,21 @@ export const action = (store) => async ({ request }) => {
 
   try {
     const response = await customAPI.post('/auth/login', data)
-    console.log("🚀 ~ action ~ response:", response)
+    // console.log("🚀 ~ action ~ response:", response)
 
-    store.dispatch(login(response.data))
+    const user = response.data.data;
+    // console.log("🚀 ~ action ~ user:", user)
+
+    store.dispatch(login({data: user}))
+
+    // Dispatch initializeCart and wait for it to complete
+    try {
+      await store.dispatch(initializeCart({ userId: user._id })) 
+    } catch (error) {
+      console.error("Failed to initialize cart:", error);
+      toast.error("Failed to load cart. Please try again.");
+    }
+
     toast.success('Login Success')
     return redirect('/')
   } catch (error) {

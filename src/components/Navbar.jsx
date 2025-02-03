@@ -6,20 +6,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import customAPI from '../api'
 import { logout } from '../features/userSlice'
 import { toast } from 'react-toastify'
+import { clearCart } from '../features/cartSlice'
 
 const Navbar = () => {
     const user = useSelector((state) => state.userState.user)
+    const inCart = useSelector((state) => state.cartState.numItemsInCart)
+    
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleLogout = async() => {
         try {
             await customAPI.get('/auth/logout')
+
+            
             dispatch(logout())
+            dispatch(clearCart())
             toast.success('Log out successfully')
             navigate('/')
         } catch (error) {
             dispatch(logout())
+            dispatch(clearCart())
             toast.error('Log out failed')
             navigate('/')
         }
@@ -43,10 +50,10 @@ const Navbar = () => {
                 </ul>
 
                 <div className='flex space-x-3 items-center'>
-                    <NavLink className='btn bg-white btn-circle btm-md' >
+                    <NavLink to={'/cart'} className='btn bg-white btn-circle btm-md' >
                         <div className='indicator'>
                             <BsCart className='text-xl '/>
-                            <span className='badge badge-xs indicator-item badge-primary'>0</span>
+                            <span className='badge badge-xs indicator-item badge-primary'>{inCart}</span>
                         </div>
                     </NavLink>
                     {user ? (

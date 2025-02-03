@@ -4,6 +4,8 @@ import { useLoaderData, useParams } from 'react-router-dom'
 import ProductList from '../components/ProductList'
 import customAPI from '../api'
 import { generateSelectAmount, priceFormat } from '../utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../features/cartSlice'
 
 // test
 // export const loader = async({request}) => {
@@ -24,6 +26,8 @@ const ProductDetails = () => {
     const [amount, setAmount] = useState(1)
     const [subtotal, setSubtotal] = useState(0)
     const [recommendedProducts, setRecommendedProducts] = useState([])
+
+    const dispatch = useDispatch()
 
     const getProduct = async () => {
       const { data } = await customAPI.get(`/product/${id}`)
@@ -64,6 +68,25 @@ const ProductDetails = () => {
     }
     // const { products } = useLoaderData()
 
+    const userId = useSelector((state) => state.userState.user?._id)
+    // console.log("🚀 ~ ProductDetails ~ userId:", userId)
+
+    const productCart = {
+      cartId: product._id + product.name,
+      productId: product._id,
+      name: product.name,
+      price: product.price,
+      amount: amount,
+      images: product.images,
+      category: product.category,
+      stock: product.stock,
+    }
+
+    const handleAddToCart = () => {
+      // console.log("🚀 ~ handleAddToCart ~ productCart:", productCart)
+      dispatch(addToCart({product: productCart, userId}))
+    }
+
   return (
     <>
       {/* <ProductCarousel images={productImages}/> */}
@@ -96,13 +119,11 @@ const ProductDetails = () => {
                     
                     <div className="space-y-2 pt-5">
                       <button className="btn btn-primary w-full">Buy Now</button>
-                      <button className="btn btn- w-full">Add to Cart</button>
+                      <button className="btn btn- w-full" onClick={handleAddToCart} >Add to Cart</button>
                     </div>
                 </div>
             </div>
         </div>
-            {/*  */}
-        
             
       </div>
       {recommendedProducts.length > 0 ? (
