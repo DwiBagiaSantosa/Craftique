@@ -19,7 +19,13 @@ export const action = (store) => async ({ request }) => {
 
     store.dispatch(login({data: user}))
 
-    store.dispatch(initializeCart({ userId: user._id }))
+    // Dispatch initializeCart and wait for it to complete
+    try {
+      await store.dispatch(initializeCart({ userId: user._id })) 
+    } catch (error) {
+      console.error("Failed to initialize cart:", error);
+      toast.error("Failed to load cart. Please try again.");
+    }
 
     toast.success('Login Success')
     return redirect('/')

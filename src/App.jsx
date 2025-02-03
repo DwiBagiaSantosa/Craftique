@@ -22,7 +22,7 @@ import { store } from "./store";
 import Cart from "./pages/Cart.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { initializeCart } from "./features/cartSlice.js";
+import { fetchCart, initializeCart, saveCart } from "./features/cartSlice.js";
 
 
 
@@ -66,12 +66,23 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.userState.user)
+  const cartState = useSelector((state) => state.cartState);
+  console.log("🚀 ~ App ~ cartState:", cartState)
 
   useEffect(() => {
-    //  initialize the cart when the app loads
-    const userId = user?._id;
-    dispatch(initializeCart({ userId }))
+    if (user?._id) {
+      dispatch(fetchCart(user._id)).catch((error) => {
+        console.error("Failed to fetch cart:", error);
+        // Optionally show a toast or error message to the user
+      });
+    }
   }, [dispatch, user])
+
+  useEffect(() => {
+    if (user?._id && cartState.cartItems.length > 0) {
+      dispatch(saveCart({ userId: user._id, ...cartState }))
+    }
+  }, [dispatch, cartState, user])
 
   return (
     <RouterProvider 

@@ -1,34 +1,36 @@
 import React from 'react'
 import { priceFormat, generateSelectAmount } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeItem, updateCart } from '../features/cartSlice'
+import { removeCartItem, removeItem, updateCart } from '../features/cartSlice'
 import { FaTrashAlt } from "react-icons/fa";
 
 
 const CartListItem = ({item, index, divider}) => {
-    const {cartId, name, category, price, image, amount, stock} = item
+    const {productId, name, category, price, images, amount, stock} = item
+    // console.log("🚀 ~ CartListItem ~ stock:", stock)
+    // console.log("🚀 ~ CartListItem ~ amount:", amount)
     const userId = useSelector((state) => state.userState.user?._id);
 
     const dispatch = useDispatch()
 
     const handleAmountChange = (e) => {
-        dispatch(updateCart({cartId, amount: parseInt(e.target.value), userId}))
+        dispatch(updateCart({productId, amount: parseInt(e.target.value), userId}))
     }
 
     const handleRemoveItem = () => {
-        dispatch(removeItem({cartId, userId}))
+        dispatch(removeCartItem({ userId, productId }))
     }
 
     const subtotal = price * amount
     
   return (
     <>
-        <div className={`flex items-center justify-between border-gray-200 ${index !== divider - 1 && "border-b"} py-4`} key={cartId}>
+        <div className={`flex items-center justify-between border-gray-200 ${index !== divider - 1 && "border-b"} py-4`} key={productId}>
             <div className="flex items-center space-x-4">
             
                 {/* Image */}
                 <img
-                    src={image}
+                    src={images}
                     alt={name}
                     className="h-[80px] w-[80px] object-cover rounded"
                 />

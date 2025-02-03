@@ -74,12 +74,12 @@ const ProductDetails = () => {
     const productCart = {
       cartId: product._id + product.name,
       productId: product._id,
-      image: product.images,
       name: product.name,
-      category: product.category,
       price: product.price,
+      amount: amount,
+      images: product.images,
+      category: product.category,
       stock: product.stock,
-      amount: amount
     }
 
     const handleAddToCart = () => {
