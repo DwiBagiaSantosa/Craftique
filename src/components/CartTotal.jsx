@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { priceFormat } from '../utils'
 import { Link } from 'react-router-dom'
 
-const CartTotal = ({user}) => {
+const CartTotal = ({isCheckout}) => {
     const cartTotal = useSelector((state) => state.cartState.cartTotal)
   return (
     <>
@@ -14,15 +14,17 @@ const CartTotal = ({user}) => {
                     <p className="text-gray-500">Total</p>
                     <p className="font-semibold">{priceFormat(cartTotal)}</p>
                 </div>
-                <div className="border-t border-gray-200 my-4"></div>
             </div>
 
+            
+
             {/* Checkout Button */}
-            {user ? (
-                <Link to='/checkout' className='btn btn-primary btn-block mt-8'>Checkout</Link>
-            ) : (
-                <Link to='/login' className='btn btn-primary btn-block mt-8'>Login to checkout</Link>
-            )}
+            {isCheckout && (
+                <>
+                    <div className="border-b border-gray-200 pt-4"></div>
+                    <Link to='/checkout' className='btn btn-primary btn-block mt-5'>Checkout</Link>
+                </>
+            ) }
         </div>
     </>
   )

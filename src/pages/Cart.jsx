@@ -28,7 +28,7 @@ const Cart = () => {
 
                 {/* Order Summary */}
                 <div className="col-span-4">
-                    <CartTotal user={user}/>
+                    <CartTotal isCheckout/>
                 </div>
                 </>
             )}

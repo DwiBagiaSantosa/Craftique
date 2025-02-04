@@ -7,11 +7,13 @@ import Product from "./pages/Product";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ProductDetails from "./pages/ProductDetails";
+import Checkout from "./pages/Checkout";
+import Cart from "./pages/Cart.jsx";
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
 import { loader as productLoader } from "./pages/Product.jsx"
-// import { loader as similiarProductLoader } from "./pages/ProductDetails.jsx"
+import { loader as checkoutLoader } from "./pages/Checkout.jsx"
 
 // Action
 import { action as RegisterAction } from "./pages/auth/Register.jsx"
@@ -19,7 +21,6 @@ import { action as LoginAction } from "./pages/auth/Login.jsx"
 
 // Store
 import { store } from "./store";
-import Cart from "./pages/Cart.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCart, initializeCart, saveCart } from "./features/cartSlice.js";
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+        loader: checkoutLoader(store)
       }
     ]
   },
