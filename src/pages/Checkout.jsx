@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormInput from '../components/Form/FormInput'
 import CartTotal from '../components/CartTotal'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, redirect } from 'react-router-dom'
 import customAPI from '../api'
+import { clearCart } from '../features/cartSlice'
 
 const insertSnapScript = () => {
   return new Promise((resolve, reject) => {
@@ -30,6 +31,7 @@ export const loader = (storage) => () => {
 
 const Checkout = () => {
   const user = useSelector((state) => state.userState.user)
+  console.log("🚀 ~ Checkout ~ user:", user)
   const cart = useSelector((state) => state.cartState.cartItems)
 
   const navigate = useNavigate()
@@ -46,6 +48,7 @@ const Checkout = () => {
     const formData = new FormData(form)
 
     const data = Object.fromEntries(formData)
+    // console.log("🚀 ~ handleCheckout ~ data:", data)
 
     const newArrayCart = cart.map((item) => {
       return {
@@ -53,6 +56,7 @@ const Checkout = () => {
         quantity: item.amount
       }
     })
+    // console.log("🚀 ~ newArrayCart ~ newArrayCart:", newArrayCart)
 
     try {
         const response = await customAPI.post('/order', {
@@ -60,17 +64,18 @@ const Checkout = () => {
           firstName: data.firstname,
           lastName: data.lastname,
           phoneNumber: data.phoneNumber,
-          cartItem: newArrayCart
+          cartItems: newArrayCart
         })
 
-        const snapTtoken = response.data.token
+        const snapToken = response.data.token
+        console.log("🚀 ~ handleCheckout ~ snapToken:", snapToken)
 
         window.snap.pay(snapToken.token, {
             // Optional
             onSuccess: function(result){
-                dispatch(clearCartItem())
+                dispatch(clearCart( user._id));
                 console.log(result);
-                navigate('/order')
+                navigate('/')
             },
             // Optional
             onPending: function(result){
@@ -96,12 +101,12 @@ const Checkout = () => {
         <div className='max-w-[1380px] mx-auto grid grid-cols-12 gap-6 px-[75px]'>
             <div className='col-span-8'>
                 <h1 className="text-3xl font-bold mb-8 ">Payment Details</h1>
-                <form action="POST" className='bg-white p-6 shadow rounded-lg'>
+                <form action="POST" className='bg-white p-6 shadow rounded-lg' onSubmit={handleCheckout}>
                     <div className='grid grid-cols-2 gap-x-4'>
                         <FormInput label={"First Name"} type={"name"} name={"firstname"} />
                         <FormInput label={"Last Name"} type={"name"} name={"lastname"} />
                     </div>
-                    <FormInput label={"Email"} type={"email"} name={"email"} />
+                    <FormInput label={"Email"} type={"email"} name={"email"} defaultValue={user?.email}/>
                     <FormInput label={"Phone"} type={"name"} name={"phoneNumber"} />
                     <button type='submit' className='btn btn-primary mt-8 btn-block' >Make a Payment</button>
                 </form>

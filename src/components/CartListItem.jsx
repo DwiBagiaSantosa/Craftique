@@ -1,7 +1,7 @@
 import React from 'react'
 import { priceFormat, generateSelectAmount } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeCartItem, removeItem, updateCart } from '../features/cartSlice'
+import { removeCartItem, updateCart } from '../features/cartSlice'
 import { FaTrashAlt } from "react-icons/fa";
 
 

@@ -21,12 +21,12 @@ const Navbar = () => {
 
             
             dispatch(logout())
-            dispatch(clearCart())
+            // dispatch(clearCart())
             toast.success('Log out successfully')
             navigate('/')
         } catch (error) {
             dispatch(logout())
-            dispatch(clearCart())
+            // dispatch(clearCart())
             toast.error('Log out failed')
             navigate('/')
         }
@@ -50,22 +50,24 @@ const Navbar = () => {
                 </ul>
 
                 <div className='flex space-x-3 items-center'>
+                    {user ? (
+                    <>
                     <NavLink to={'/cart'} className='btn bg-white btn-circle btm-md' >
                         <div className='indicator'>
                             <BsCart className='text-xl '/>
                             <span className='badge badge-xs indicator-item badge-primary'>{inCart}</span>
                         </div>
                     </NavLink>
-                    {user ? (
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn text-white font-normal">Hello, {user.name.length > 12 ? `${user.name.slice(0, 12)}...` : user.name}</div>
-                            <ul
-                                tabIndex={0}
-                                className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
-                                <li><a>Profile</a></li>
-                                <li><button onClick={handleLogout}>Logout</button></li>
-                            </ul>
-                        </div>
+                    <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn text-white font-normal">Hello, {user.name.length > 12 ? `${user.name.slice(0, 12)}...` : user.name}</div>
+                        <ul
+                            tabIndex={0}
+                            className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                            <li><a>Profile</a></li>
+                            <li><button onClick={handleLogout}>Logout</button></li>
+                        </ul>
+                    </div>
+                    </>
                     ) : (
                         <>
                             <Link to={'/login'} className='py-3 px-5 text-black rounded-full bg-white font-semibold'>Sign In</Link>

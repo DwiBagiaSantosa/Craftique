@@ -50,6 +50,16 @@ export const removeCartItem = createAsyncThunk("cart/removeCartItem", async ({ u
     }
 })
 
+export const clearCart = createAsyncThunk("cart/clearCart", async (userId) => {
+    try {
+        await customAPI.delete(`/cart/${userId}`);
+        return null; // Clear the entire cart in the Redux state
+    } catch (error) {
+        console.error("Failed to clear cart:", error.response?.data || error.message);
+        throw error;
+    }
+});
+
 export const initializeCart = (payload) => async (dispatch) => {
     const { userId } = payload;
     console.log("Initializing cart for user:", userId);
@@ -110,12 +120,6 @@ const cartSlice = createSlice({
             // localStorage.setItem(key, JSON.stringify(state))
             // saveCartToLocalStorage(userId, state)
         },
-        clearCart: (state, action) => {
-            // const { userId } = action.payload || {};
-            // const key = userId ? `cart_${userId}` : 'cart';
-            // localStorage.setItem(key, JSON.stringify(defaultValue));
-            return defaultValue;
-        },
         // loadCart: (state, action) => {
         //     return action.payload
         // }
@@ -145,6 +149,12 @@ const cartSlice = createSlice({
     
             console.log("Item removed from Redux state:", productId);
           })
+          .addCase(clearCart.fulfilled, (state, action) => {
+                console.log("Clearing cart in Redux state");
+                state.cartItems = [];
+                state.numItemsInCart = 0;
+                state.cartTotal = 0;
+          })
           .addCase(removeCartItem.rejected, (state, action) => {
             console.error("Failed to remove item from backend:", action.error);
           })
@@ -156,9 +166,16 @@ const cartSlice = createSlice({
             // state.cartItems = [];
             // state.numItemsInCart = 0;
             // state.cartTotal = 0;
-        })
+            })
+            .addCase(clearCart.rejected, (state, action) => {
+                console.error("Failed to clear cart:", action.error);
+                // Optionally reset the cart state to default values
+                // state.cartItems = [];
+                // state.numItemsInCart = 0;
+                // state.cartTotal = 0;
+            })
     }
 })
 
-export const { addToCart, updateCart, removeItem, clearCart } = cartSlice.actions
+export const { addToCart, updateCart } = cartSlice.actions
 export default cartSlice.reducer

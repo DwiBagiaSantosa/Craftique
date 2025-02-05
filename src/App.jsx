@@ -1,14 +1,16 @@
+import React, { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { delayForLoading } from "./utils/index.jsx";
 
 // Pages
-import Layout from "./layouts/Layout";
-import Home from "./pages/Home";
-import Product from "./pages/Product";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
-import ProductDetails from "./pages/ProductDetails";
-import Checkout from "./pages/Checkout";
-import Cart from "./pages/Cart.jsx";
+const Layout = lazy(() => delayForLoading(import("./layouts/Layout")));
+const Home = lazy(() => import("./pages/Home"));
+const Product = lazy(() => import("./pages/Product"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const ProductDetails = lazy(() => delayForLoading(import("./pages/ProductDetails")));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const Cart = lazy(() => import("./pages/Cart"));
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
@@ -22,49 +24,82 @@ import { action as LoginAction } from "./pages/auth/Login.jsx"
 // Store
 import { store } from "./store";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchCart, initializeCart, saveCart } from "./features/cartSlice.js";
+import { fetchCart, saveCart } from "./features/cartSlice.js";
+
+import Loading from "./components/Loading.jsx";
 
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
         loader: homeLoader
       },
       {
         path: "products",
-        element: <Product />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Product />
+          </Suspense>
+        ),
         loader: productLoader
       },
       {
         path: "products/:id",
-        element: <ProductDetails />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <ProductDetails />
+          </Suspense>
+        ),
       },
       {
         path: "cart",
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Checkout />
+          </Suspense>
+        ),
         loader: checkoutLoader(store)
       }
     ]
   },
   {
     path: "login",
-    element: <Login />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Login />
+      </Suspense>
+    ),
     action: LoginAction(store)
   },
   {
     path: "register",
-    element: <Register />,
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Register />
+      </Suspense>
+    ),
     action: RegisterAction(store)
   }
 ])

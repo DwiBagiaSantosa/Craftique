@@ -18,3 +18,9 @@ export const priceFormat = (price) => {
     }).format(price)
     return rupiahFormat
 }
+
+export const delayForLoading = async (promise) => {
+    return new Promise(resolve => {
+        setTimeout(resolve, 1000);
+    }).then(() => promise);
+}
