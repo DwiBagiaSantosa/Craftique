@@ -11,11 +11,13 @@ const Register = lazy(() => import("./pages/auth/Register"));
 const ProductDetails = lazy(() => delayForLoading(import("./pages/ProductDetails")));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const Cart = lazy(() => import("./pages/Cart"));
+const Orders = lazy(() => import("./pages/Orders"));
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
 import { loader as productLoader } from "./pages/Product.jsx"
 import { loader as checkoutLoader } from "./pages/Checkout.jsx"
+import { loader as ordersLoader } from "./pages/Orders.jsx"
 
 // Action
 import { action as RegisterAction } from "./pages/auth/Register.jsx"
@@ -81,6 +83,15 @@ const router = createBrowserRouter([
           </Suspense>
         ),
         loader: checkoutLoader(store)
+      },
+      {
+        path: "orders",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Orders />
+          </Suspense>
+        ),
+        loader: ordersLoader(store)
       }
     ]
   },

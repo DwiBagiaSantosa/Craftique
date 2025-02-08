@@ -47,6 +47,13 @@ const Navbar = () => {
                     <li className='hover:text-secondary duration-300 transition-all'>
                         <Link>Categories</Link>
                     </li>
+                    {user && (
+                        <>
+                        <li className='hover:text-secondary duration-300 transition-all'>
+                            <Link to={'/orders'}>Orders</Link>
+                        </li>
+                        </>
+                    )}
                 </ul>
 
                 <div className='flex space-x-3 items-center'>
@@ -64,6 +71,8 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
                             <li><a>Profile</a></li>
+                            {user.role === 'admin' && <li><Link>Admin</Link></li>}
+                            
                             <li><button onClick={handleLogout}>Logout</button></li>
                         </ul>
                     </div>

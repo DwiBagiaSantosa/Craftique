@@ -1,7 +1,7 @@
 import React from 'react'
 import Filter from '../components/Filter'
 import ProductCard from '../components/ProductCard'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 import customAPI from '../api'
 import Pagination from '../components/Pagination'
 
@@ -45,6 +45,7 @@ const Product = () => {
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold">{categoryName}</h1>
+                {/* <Link className='btn btn-primary font-semibold text-white px-6 rounded-2xl'>Add New Product</Link> */}
                 <p className="text-gray-500 text-sm">
                   Showing {products.length ? `1-${products.length}` : 0} of {pagination.totalProduct} Products 
                 </p>
