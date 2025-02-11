@@ -27,7 +27,7 @@ const ProductCard = ({products}) => {
                   {/* Product Image */}
                   <div className="relative">
                     <img
-                      src={product.images}
+                      src={product.images[0]}
                       alt={product.name}
                       className="w-full h-[200px] object-cover"
                       loading="lazy"

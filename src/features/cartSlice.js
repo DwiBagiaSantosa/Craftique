@@ -11,7 +11,7 @@ const defaultValue = {
 export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
     try {
         const response = await customAPI.get(`/cart/${userId}`);
-        console.log("Fetched cart:", response.data);
+        // console.log("Fetched cart:", response.data);
         
         const { data } = response.data;
 
@@ -128,7 +128,7 @@ const cartSlice = createSlice({
         // Handle successful fetchCart
         builder
         .addCase(fetchCart.fulfilled, (state, action) => {
-            console.log("Payload received in fetchCart.fulfilled:", action.payload);
+            // console.log("Payload received in fetchCart.fulfilled:", action.payload);
             const { cartItems, numItemsInCart, cartTotal } = action.payload || {};
             state.cartItems = Array.isArray(cartItems) ? cartItems : [];
             state.numItemsInCart = typeof numItemsInCart === "number" ? numItemsInCart : 0;

@@ -68,7 +68,7 @@ const Checkout = () => {
         })
 
         const snapToken = response.data.token
-        console.log("🚀 ~ handleCheckout ~ snapToken:", snapToken)
+        // console.log("🚀 ~ handleCheckout ~ snapToken:", snapToken)
 
         window.snap.pay(snapToken.token, {
             // Optional
