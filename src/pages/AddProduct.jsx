@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormSelect from '../components/Form/FormSelect'
 import FormInput from '../components/Form/FormInput'
 import FormTextArea from '../components/Form/FormTextArea';
@@ -82,6 +82,10 @@ const AddProduct = () => {
             toast.error(errorMessage)
         }
     }
+
+    useEffect(() => {
+        document.title = "Craftique | Add Product"
+    }, [])
 
     return (
     <>

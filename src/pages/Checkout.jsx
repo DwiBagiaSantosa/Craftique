@@ -95,6 +95,10 @@ const Checkout = () => {
     }
   }
 
+  useEffect(() => {
+    document.title = "Craftique | Checkout"
+  }, [])
+
   return (
     <>
       <div className='w-full min-h-screen bg-white pt-[170px] pb-12'>

@@ -53,7 +53,7 @@ const ProductDetails = () => {
       })
       
       setRecommendedProducts(data.data)
-      console.log("🚀 ~ getRecommendedProducts ~ data:", data)
+      // console.log("🚀 ~ getRecommendedProducts ~ data:", data)
     }
 
     useEffect(() => {
@@ -94,6 +94,10 @@ const ProductDetails = () => {
       // console.log("🚀 ~ handleAddToCart ~ productCart:", productCart)
       dispatch(addToCart({product: productCart, userId}))
     }
+
+    useEffect(() => {
+      document.title = `Craftique | Product Details`
+    }, [])
 
     const handleDelete = () => {
       confirmAlert({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { redirect, useLoaderData } from 'react-router-dom'
 import customAPI from '../api'
 import { toast } from 'react-toastify'
@@ -35,6 +35,10 @@ const Orders = () => {
             <h1 className='text-center text-primary text-3xl font-bold border-b border-secondary py-3'>No Orders</h1>
         )
     }
+
+    useEffect(() => {
+        document.title = "Craftique | Orders"
+    }, [])
 
   return (
     <>

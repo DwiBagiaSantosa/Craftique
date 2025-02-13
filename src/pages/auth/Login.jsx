@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormAuth from '../../components/FormAuth'
 import customAPI from '../../api'
 import { login } from '../../features/userSlice'
@@ -38,6 +38,10 @@ export const action = (store) => async ({ request }) => {
 }
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Craftique | Login"
+  }, [])
+
   return (
     <>
       <main>

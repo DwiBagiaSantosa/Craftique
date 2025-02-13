@@ -72,6 +72,11 @@ const Edit = () => {
       };
 
       // console.log("🚀 ~ Edit ~ product:", product);
+
+  useEffect(() => {
+    document.title = `Craftique | Edit Product`
+  }, [])
+      
   return (
     <>
     {product ? (

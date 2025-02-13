@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '../components/Hero'
 import Categories from '../components/Categories'
 import ProductList from '../components/ProductList'
@@ -14,6 +14,9 @@ export const loader = async({request}) => {
 
 const Home = () => {
 
+  useEffect(() => {
+    document.title = "Craftique | Home"
+  }, [])
   
   const { products } = useLoaderData()
   return (
