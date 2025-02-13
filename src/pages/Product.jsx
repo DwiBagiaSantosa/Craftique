@@ -11,7 +11,7 @@ export const loader = async({request}) => {
   const { data } = await customAPI.get('/product', {params: params})
 
   const products = data.data
-  console.log("🚀 ~ loader ~ products:", products)
+  // console.log("🚀 ~ loader ~ products:", products)
 
   const pagination = data.pagination
   // console.log("🚀 ~ loader ~ pagination:", pagination)
@@ -22,7 +22,7 @@ export const loader = async({request}) => {
 const Product = () => {
   const { products, pagination, params } = useLoaderData()
   const user = useSelector((state) => state.userState.user)
-  const isAdmin = user.role === 'admin'
+  const isAdmin = user?.role === 'admin'
 
   const categories = {
     "Hand-Painted Art": "Hand-Painted Art",

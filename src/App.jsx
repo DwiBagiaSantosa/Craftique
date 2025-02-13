@@ -1,18 +1,20 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { delayForLoading } from "./utils/index.jsx";
 
 // Pages
-const Layout = lazy(() => import("./layouts/Layout"));
-const Home = lazy(() => import("./pages/Home"));
-const Product = lazy(() => import("./pages/Product"));
-const Login = lazy(() => import("./pages/auth/Login"));
-const Register = lazy(() => import("./pages/auth/Register"));
-const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const Checkout = lazy(() => import("./pages/Checkout"));
-const Cart = lazy(() => import("./pages/Cart"));
-const Orders = lazy(() => import("./pages/Orders"));
-const AddProduct = lazy(() => import("./pages/AddProduct"));
+import Layout from"./layouts/Layout"
+import Home from "./pages/Home";
+import Product from  "./pages/Product";
+import Login from  "./pages/auth/Login";
+import Register from  "./pages/auth/Register";
+import ProductDetails from  "./pages/ProductDetails";
+import Checkout from  "./pages/Checkout";
+import Cart from  "./pages/Cart";
+import Orders from  "./pages/Orders";
+import AddProduct from  "./pages/AddProduct";
+import Edit from "./pages/Edit.jsx";
+import Error from "./pages/Error.jsx";
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
@@ -20,6 +22,7 @@ import { loader as productLoader } from "./pages/Product.jsx"
 import { loader as checkoutLoader } from "./pages/Checkout.jsx"
 import { loader as ordersLoader } from "./pages/Orders.jsx"
 import { loader as addProductLoader } from "./pages/AddProduct.jsx"
+import { loader as editLoader } from "./pages/Edit.jsx"
 
 // Action
 import { action as RegisterAction } from "./pages/auth/Register.jsx"
@@ -34,94 +37,61 @@ import Loading from "./components/Loading.jsx";
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Layout />
-      </Suspense>
-    ),
+    element: <Layout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Home />
-          </Suspense>
-        ),
+        element: <Home />,
         loader: homeLoader
       },
       {
         path: "products",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Product />
-          </Suspense>
-        ),
+        element: <Product />,
         loader: productLoader
       },
       {
         path: "products/:id",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <ProductDetails />
-          </Suspense>
-        ),
+        element: <ProductDetails />,
       },
       {
         path: "cart",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Cart />
-          </Suspense>
-        ),
+        element: <Cart />,
       },
       {
         path: "checkout",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Checkout />
-          </Suspense>
-        ),
+        element: <Checkout />,
         loader: checkoutLoader(store)
       },
       {
         path: "orders",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <Orders />
-          </Suspense>
-        ),
+        element: <Orders />,
         loader: ordersLoader(store)
       },
       {
         path: "products/add",
-        element: (
-          <Suspense fallback={<Loading />}>
-            <AddProduct />
-          </Suspense>
-        ),
+        element: <AddProduct />,
         loader: addProductLoader(store)
+      },
+      {
+        path: "products/edit/:id",
+        element: <Edit />,
+        loader: editLoader(store)
       }
     ]
   },
   {
     path: "login",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Login />
-      </Suspense>
-    ),
+    element: <Login />,
     action: LoginAction(store)
   },
   {
     path: "register",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Register />
-      </Suspense>
-    ),
+    element: <Register />,
     action: RegisterAction(store)
   }
 ])

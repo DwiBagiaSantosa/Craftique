@@ -42,10 +42,7 @@ const Navbar = () => {
                 
                 <ul className='flex space-x-[30px] text-white font-normal'>
                     <li className='hover:text-secondary duration-300 transition-all'>
-                        <Link>Shop</Link>
-                    </li>
-                    <li className='hover:text-secondary duration-300 transition-all'>
-                        <Link>Categories</Link>
+                        <Link to={'/products'}>Shop</Link>
                     </li>
                     {user && (
                         <>

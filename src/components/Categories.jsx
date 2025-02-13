@@ -11,14 +11,14 @@ import { Link } from 'react-router-dom';
 const Categories = () => {
 
   const categories = [
-    { name: "Hand-Painted Art", icon: <FaHandsHoldingCircle className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Sculpture", icon: <GiColombianStatue className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Calligraphy", icon: <PiSignatureBold className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Ceramics Art", icon: <GiPaintedPottery className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Collectible Art", icon: <SiOpencollective className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Wall Art", icon: <GiBrickWall className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Traditional Art", icon: <GiCeremonialMask className="text-white w-6 h-6" />, products: 4583 },
-    { name: "Functional Art", icon: <BiChair className="text-white w-6 h-6" />, products: 4583 }
+    { name: "Hand-Painted Art", icon: <FaHandsHoldingCircle className="text-white w-6 h-6" />,  },
+    { name: "Sculpture", icon: <GiColombianStatue className="text-white w-6 h-6" />,  },
+    { name: "Calligraphy", icon: <PiSignatureBold className="text-white w-6 h-6" />,  },
+    { name: "Ceramics Art", icon: <GiPaintedPottery className="text-white w-6 h-6" />,  },
+    { name: "Collectible Art", icon: <SiOpencollective className="text-white w-6 h-6" />,  },
+    { name: "Wall Art", icon: <GiBrickWall className="text-white w-6 h-6" />,  },
+    { name: "Traditional Art", icon: <GiCeremonialMask className="text-white w-6 h-6" />,  },
+    { name: "Functional Art", icon: <BiChair className="text-white w-6 h-6" />,  }
   ]
 
   return (
@@ -39,7 +39,7 @@ const Categories = () => {
               </div>
               <div className='space-y-0.5'>
                 <h1 className='font-semibold'>{category.name}</h1>
-                <p className='text-sm text-[#616369]'>{category.products.toLocaleString()} products</p>
+                {/* <p className='text-sm text-[#616369]'>{category.products.toLocaleString()} products</p> */}
               </div>
             </Link>
           ))}

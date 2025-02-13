@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import imageNotAvailable from '../assets/image_not_available.png';
 
 const ProductCard = ({products}) => {
 
@@ -27,11 +28,15 @@ const ProductCard = ({products}) => {
                   {/* Product Image */}
                   <div className="relative">
                     <img
-                      src={product.images[0]}
+                      src={product.images[0] ? product.images[0] : imageNotAvailable}
                       alt={product.name}
                       className="w-full h-[200px] object-cover"
-                      loading="lazy"
                     />
+                    {product.stock < 1 && (
+                      <div className='absolute top-0 right-0 bg-gray-400 font-bold text-2xl opacity-75 text-white w-full h-full flex items-center justify-center'>
+                        Out of Stock
+                      </div>
+                    )}
                   </div>
 
                   {/* Product Details */}
