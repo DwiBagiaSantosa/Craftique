@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        // target: 'https://craftique-backend.vercel.app',
-        target: 'http://localhost:3000',
+        target: 'https://craftique-backend.vercel.app', // uncomment this to use my backend
+        // target: 'http://localhost:3000', // uncomment this to use local backend
         changeOrigin: true
       }
     }
