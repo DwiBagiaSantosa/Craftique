@@ -40,7 +40,7 @@ const ProductDetails = () => {
     const getProduct = async () => {
       const { data } = await customAPI.get(`/product/${id}`)
       setProduct(data.data)
-      console.log("🚀 ~ getProduct ~ data:", data)
+      // console.log("🚀 ~ getProduct ~ data:", data)
     }
 
     const getRecommendedProducts = async () => {
@@ -53,7 +53,7 @@ const ProductDetails = () => {
       })
       
       setRecommendedProducts(data.data)
-      console.log("🚀 ~ getRecommendedProducts ~ data:", data)
+      // console.log("🚀 ~ getRecommendedProducts ~ data:", data)
     }
 
     useEffect(() => {
@@ -94,6 +94,10 @@ const ProductDetails = () => {
       // console.log("🚀 ~ handleAddToCart ~ productCart:", productCart)
       dispatch(addToCart({product: productCart, userId}))
     }
+
+    useEffect(() => {
+      document.title = `Craftique | Product Details`
+    }, [])
 
     const handleDelete = () => {
       confirmAlert({
@@ -155,16 +159,16 @@ const ProductDetails = () => {
                       <span className='font-bold '>{priceFormat(subtotal)}</span>
                     </div>
                     
-                    <div className="space-y-2 pt-5">
+                    <div className="space-y-2 mt-5">
                       { outOfStock ? (
-                        <button className="btn btn-disabled w-full">Out of Stock</button>
+                        <button className="btn btn-disabled w-full mt-10">Out of Stock</button>
                       ) : user ? (
                         <>
-                        <button className="btn btn-primary w-full">Buy Now</button>
-                        <button className="btn btn- w-full" onClick={handleAddToCart} >Add to Cart</button>
+                        {/* <button className="btn btn-primary w-full">Buy Now</button> */}
+                        <button className="btn btn-primary w-full mt-10" onClick={handleAddToCart} >Add to Cart</button>
                         </>
                       ) : (
-                        <Link to="/login" className="btn btn-primary w-full mt-6">Login to Buy</Link>
+                        <Link to="/login" className="btn btn-primary w-full mt-10">Login to Buy</Link>
                       ) }
                       
                       {user?.role === 'admin' && (

@@ -1,14 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-// const defaultValue = {
-//     cartItem: [],
-//     numItemsInCart: 0,
-//     cartTotal: 0
-// }
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import customAPI from "../api";
 
 const initialState = {
     user: JSON.parse(localStorage.getItem('user')) || null
 };
+
+export const updateProfile = createAsyncThunk("user/updateProfile", async ({ userId, userData }, { rejectWithValue }) => {
+    try {
+        const response = await customAPI.put(`auth/user/${userId}/update`, userData);
+        return response.data
+    } catch (error) {
+        console.error("Failed to update profile:", error.response?.data || error.message);
+        return rejectWithValue(error.response?.data || "An error occurred while updating the profile.");
+    }
+});
 
 const userSlice = createSlice({
     name: 'user',
@@ -46,6 +51,17 @@ const userSlice = createSlice({
             // simpan ke local storage
             localStorage.setItem('user', JSON.stringify(user))
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(updateProfile.fulfilled, (state, action) => {
+            const user = action.payload.data;
+            state.user = user
+            localStorage.setItem('user', JSON.stringify(user))
+        })
+
+        builder.addCase(updateProfile.rejected, (state, action) => {
+            console.error("Profile update failed:", action.payload || action.error.message);
+        })
     }
 });
 

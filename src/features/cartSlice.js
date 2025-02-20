@@ -21,7 +21,7 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
             cartTotal: data.cartTotal || 0,
         }; // Return only the relevant cart data
     } catch (error) {
-      console.error("Failed to fetch cart:",  error.response?.data || error.message);
+    //   console.error("Failed to fetch cart:",  error.response?.data || error.message);
       throw error;
     }
 });
@@ -30,9 +30,9 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
 export const saveCart = createAsyncThunk("cart/saveCart", async (cartState) => {
     try {
       const { userId, ...cartData } = cartState;
-      console.log("Saving cart to backend:", cartData);
+    //   console.log("Saving cart to backend:", cartData);
       await customAPI.put(`/cart/${userId}`, cartData); // Send updated cart data
-      console.log("Cart saved successfully");
+    //   console.log("Cart saved successfully");
     } catch (error) {
       console.error("Failed to save cart:", error.response?.data || error.message);
       throw error;
@@ -42,10 +42,10 @@ export const saveCart = createAsyncThunk("cart/saveCart", async (cartState) => {
 export const removeCartItem = createAsyncThunk("cart/removeCartItem", async ({ userId, productId }) => {
     try {
         const response = await customAPI.delete(`/cart/${userId}/items/${productId}`);
-        console.log("Item removed from backend:", response.data);
+        // console.log("Item removed from backend:", response.data);
         return { productId }; // Return the productId to update the Redux state
     } catch (error) {
-        console.error("Failed to remove item from backend:", error.response?.data || error.message);
+        // console.error("Failed to remove item from backend:", error.response?.data || error.message);
         throw error;
     }
 })
@@ -62,7 +62,7 @@ export const clearCart = createAsyncThunk("cart/clearCart", async (userId) => {
 
 export const initializeCart = (payload) => async (dispatch) => {
     const { userId } = payload;
-    console.log("Initializing cart for user:", userId);
+    // console.log("Initializing cart for user:", userId);
     await dispatch(fetchCart(userId));
 };
 
@@ -85,7 +85,6 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: defaultValue,
     reducers: {
-       
         addToCart: (state, action) => {
             const { product } = action.payload
 
@@ -147,7 +146,7 @@ const cartSlice = createSlice({
             state.numItemsInCart -= item.amount;
             state.cartTotal -= item.price * item.amount;
     
-            console.log("Item removed from Redux state:", productId);
+            // console.log("Item removed from Redux state:", productId);
           })
           .addCase(clearCart.fulfilled, (state, action) => {
                 console.log("Clearing cart in Redux state");

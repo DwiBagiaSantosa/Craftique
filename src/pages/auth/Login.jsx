@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormAuth from '../../components/FormAuth'
 import customAPI from '../../api'
 import { login } from '../../features/userSlice'
@@ -23,7 +23,7 @@ export const action = (store) => async ({ request }) => {
     try {
       await store.dispatch(initializeCart({ userId: user._id })) 
     } catch (error) {
-      console.error("Failed to initialize cart:", error);
+      // console.error("Failed to initialize cart:", error);
       toast.error("Failed to load cart. Please try again.");
     }
 
@@ -38,6 +38,10 @@ export const action = (store) => async ({ request }) => {
 }
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Craftique | Login"
+  }, [])
+
   return (
     <>
       <main>
