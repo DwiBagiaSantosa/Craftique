@@ -26,7 +26,7 @@ Craftique is an E-Commerce dedicated to showcasing and selling unique, handcraft
 git clone https://github.com/DwiBagiaSantosa/Craftique.git
 ```
 
-**Step 2:** Setup the `.env` and complete the required [environment variables](#environment-variables).
+**Step 2:** Setup the `.env` and complete the required [environment variables](#environment-variables) and change the URL in [vite.config.js](https://github.com/DwiBagiaSantosa/Craftique/blob/master/vite.config.js) to connect to the local backend.
 
 **Step 3:** Install dependencies.
 
@@ -47,3 +47,7 @@ You can create your midtrans account here [midtrans](https://dashboard.midtrans.
 # midtrans client key
 VITE_CLIENT_MIDTRANS=$your_client_key
 ```
+
+## Live Demo
+- You can access live demo on this url [Demo](https://craftique-frontend.vercel.app/)
+- To do payment you can copy the payment code and go to this midtrans [simulator](https://simulator.sandbox.midtrans.com/) and select the payment method you have chosen.
