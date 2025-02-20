@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CartList from '../components/CartList'
 import CartTotal from '../components/CartTotal'
 import { useSelector } from 'react-redux'
@@ -7,6 +7,10 @@ import { useSelector } from 'react-redux'
 const Cart = () => {
     const user = useSelector((state) => state.userState.user)
     const countInCart = useSelector((state) => state.cartState.numItemsInCart)
+
+    useEffect(() => {
+      document.title = `Craftique | Cart`
+    }, [])
 
   return (
     <>

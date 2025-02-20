@@ -48,7 +48,7 @@ const Edit = () => {
         category: data.category,
         description: data.description
       })
-      toast.info('Product updated successfully')
+      toast.info(`${product.name} updated successfully`)
       navigate('/products')
     } catch (error) {
       const errorMessage = error?.response?.data?.message
@@ -72,6 +72,11 @@ const Edit = () => {
       };
 
       // console.log("🚀 ~ Edit ~ product:", product);
+
+  useEffect(() => {
+    document.title = `Craftique | Edit Product`
+  }, [])
+      
   return (
     <>
     {product ? (

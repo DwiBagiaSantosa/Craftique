@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import FormAuth from '../../components/FormAuth'
 import customAPI from '../../api'
 import { register } from '../../features/userSlice'
@@ -29,6 +29,10 @@ export const action = (store) => async ({ request }) =>{
 }
 
 const Register = () => {
+  useEffect(() => {
+    document.title = "Craftique | Register"
+  }, [])
+
   return (
     <main>
       <FormAuth isRegister/>

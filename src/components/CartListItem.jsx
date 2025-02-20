@@ -3,6 +3,7 @@ import { priceFormat, generateSelectAmount } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCartItem, updateCart } from '../features/cartSlice'
 import { FaTrashAlt } from "react-icons/fa";
+import imageNotAvailable from '../assets/image_not_available.png';
 
 
 const CartListItem = ({item, index, divider}) => {
@@ -30,7 +31,7 @@ const CartListItem = ({item, index, divider}) => {
             
                 {/* Image */}
                 <img
-                    src={images}
+                    src={images[0] ? images[0] : imageNotAvailable}
                     alt={name}
                     className="h-[80px] w-[80px] object-cover rounded"
                 />

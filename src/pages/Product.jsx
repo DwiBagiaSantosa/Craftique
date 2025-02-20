@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Filter from '../components/Filter'
 import ProductCard from '../components/ProductCard'
 import { useLoaderData, Link } from 'react-router-dom'
@@ -36,6 +36,11 @@ const Product = () => {
   };
 
   const categoryName = params.category ? categories[params.category] || "All Products" : "All Products";
+
+  useEffect(() => {
+    document.title = `Craftique | ${categoryName}`
+  }, [categoryName])
+
   return (
     <>
       <div className='w-full bg-white pt-[170px] pb-[50px]'>
