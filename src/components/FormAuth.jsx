@@ -11,7 +11,7 @@ const FormAuth = ({isRegister}) => {
                 <img src={logo} alt="" className="inline-flex h-[70px]" />
                 <h3 className='text-center text-2xl font-medium mt-6'>{ isRegister ? 'Register' : 'Log in'}</h3>
                 {isRegister ? (
-                    <FormInput label="Username" type="text" name="name" placeholder="Enter your username"/>
+                    <FormInput label="Name" type="text" name="name" placeholder="Enter your Name"/>
                 ) : null}
                 <FormInput label="Email" type="text" name="email" placeholder="Enter your email" />
                 <FormInput label="Password" type="password" name="password" placeholder="Enter your password" />

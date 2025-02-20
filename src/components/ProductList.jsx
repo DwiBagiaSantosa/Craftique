@@ -22,7 +22,7 @@ const ProductList = ({products, title}) => {
         <div className="grid-cols-5 grid gap-[30px]">
           {products.map((product) => (
               <Link to={`/products/${product._id}`} key={product._id}>
-                <div className="w-full max-w-[240px] bg-[#EFF3FA] rounded-xl overflow-hidden border border-[#DDDDDD] hover:shadow-lg transition-shadow">
+                <div className="w-full max-w-[240px] min-h-[338px] bg-[#EFF3FA] rounded-xl overflow-hidden border border-[#DDDDDD] hover:shadow-lg transition-shadow">
                   {/* Product Image */}
                   <div className="relative">
                     <img

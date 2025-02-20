@@ -23,7 +23,7 @@ export const action = (store) => async ({ request }) => {
     try {
       await store.dispatch(initializeCart({ userId: user._id })) 
     } catch (error) {
-      console.error("Failed to initialize cart:", error);
+      // console.error("Failed to initialize cart:", error);
       toast.error("Failed to load cart. Please try again.");
     }
 

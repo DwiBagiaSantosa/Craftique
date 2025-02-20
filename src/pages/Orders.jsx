@@ -18,7 +18,7 @@ export const loader = (storage) => async() => {
         const { data } = await customAPI.get('/order/current/user')
 
         orders = data.data
-        console.log("🚀 ~ loader ~ orders:", orders)
+        // console.log("🚀 ~ loader ~ orders:", orders)
     } else {
         const { data } = await customAPI.get('/order')
         orders = data.data
@@ -30,11 +30,7 @@ export const loader = (storage) => async() => {
 const Orders = () => {
     const { orders } = useLoaderData()
 
-    if (!orders.length) {
-        return (
-            <h1 className='text-center text-primary text-3xl font-bold border-b border-secondary py-3'>No Orders</h1>
-        )
-    }
+    
 
     useEffect(() => {
         document.title = "Craftique | Orders"
@@ -44,7 +40,12 @@ const Orders = () => {
     <>
       <div className='w-full min-h-screen bg-white pt-[170px] pb-12'>
         <div className='max-w-[1380px] mx-auto  gap-6 px-[75px]'>
-            
+            {orders.length < 1 ? (
+                <div className='col-span-12 text-center'>
+                    <h1 className='text-3xl font-bold mt-20'>There are no orders</h1>
+                    <p className="text-gray-500 mt-2">Start to checkout the products on your cart</p>
+                </div>
+            ) : (
                 <table className="table ">
                     <thead>
                     <tr>
@@ -84,6 +85,7 @@ const Orders = () => {
                     ))}
                     </tbody>
                 </table>
+            )}
         </div>
       </div>
     </>

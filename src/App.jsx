@@ -15,6 +15,7 @@ import Orders from  "./pages/Orders";
 import AddProduct from  "./pages/AddProduct";
 import Edit from "./pages/Edit.jsx";
 import Error from "./pages/Error.jsx";
+import Profile from "./pages/Profile.jsx";
 
 // Loader
 import { loader as homeLoader } from "./pages/Home.jsx"
@@ -34,6 +35,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, saveCart } from "./features/cartSlice.js";
 
 import Loading from "./components/Loading.jsx";
+
 
 
 
@@ -81,6 +83,10 @@ const router = createBrowserRouter([
         path: "products/edit/:id",
         element: <Edit />,
         loader: editLoader(store)
+      },
+      {
+        path: "profile",
+        element: <Profile />
       }
     ]
   },

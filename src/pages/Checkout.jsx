@@ -31,7 +31,7 @@ export const loader = (storage) => () => {
 
 const Checkout = () => {
   const user = useSelector((state) => state.userState.user)
-  console.log("🚀 ~ Checkout ~ user:", user)
+  // console.log("🚀 ~ Checkout ~ user:", user)
   const cart = useSelector((state) => state.cartState.cartItems)
 
   const navigate = useNavigate()

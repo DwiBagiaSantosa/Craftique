@@ -2,8 +2,8 @@ import React from 'react'
 import { Form, useLoaderData, Link } from 'react-router-dom'
 
 const Filter = () => {
-    const { params } = useLoaderData()
-    const { category } = params
+    // const { params } = useLoaderData()
+    // const { category } = params
 
     const categories = [
         { name: "Hand-Painted Art" , id: 1 },
