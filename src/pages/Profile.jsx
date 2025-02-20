@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FormInput from '../components/Form/FormInput'
 import FormSelect from '../components/Form/FormSelect'
-import imageNotAvailable from '../assets/image_not_available.png';
+import imageNotAvailable from '../assets/Image_not_available.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../features/userSlice';
 import { toast } from 'react-toastify';

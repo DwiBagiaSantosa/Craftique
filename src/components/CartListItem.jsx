@@ -3,7 +3,7 @@ import { priceFormat, generateSelectAmount } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCartItem, updateCart } from '../features/cartSlice'
 import { FaTrashAlt } from "react-icons/fa";
-import imageNotAvailable from '../assets/image_not_available.png';
+import imageNotAvailable from '../assets/Image_not_available.png';
 
 
 const CartListItem = ({item, index, divider}) => {
