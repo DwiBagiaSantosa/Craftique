@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 
-## Environtment Variables
+## Environment Variables
 You can create your midtrans account here [midtrans](https://dashboard.midtrans.com/register). After log in, change the Environment to `Sandbox` and go to integration>Configuration, copy the Client Key. You also gonna need to configure the [backend](https://github.com/DwiBagiaSantosa/craftique-backend).
 
 ```bash
