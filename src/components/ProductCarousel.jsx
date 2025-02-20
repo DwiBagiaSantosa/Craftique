@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from 'react-slick'
-import imageNotAvailable from '../assets/image_not_available.png';
+import imageNotAvailable from '../assets/Image_not_available.png';
 
 const ProductCarousel = ({ images = [], outOfStock }) => {
     const settings = {

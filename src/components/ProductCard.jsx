@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import imageNotAvailable from '../assets/image_not_available.png';
+import imageNotAvailable from '../assets/Image_not_available.png';
 
 const ProductCard = ({products}) => {
 
