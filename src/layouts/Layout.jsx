@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Outlet, useNavigation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -8,11 +8,13 @@ const Layout = () => {
 
   return (
     <>
+        <Suspense fallback={<Loading />}>
         <Navbar />
-        <main className=' space-y-[70px] pb-[100px]'>
-          <Outlet />
-        </main>
+          <main className=' space-y-[70px] pb-[100px]'>
+              <Outlet />
+          </main>
         <Footer />
+        </Suspense>
     </>
   )
 }

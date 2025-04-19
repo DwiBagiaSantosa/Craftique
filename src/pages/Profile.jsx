@@ -47,6 +47,7 @@ const Profile = () => {
             await dispatch(updateProfile({ userId: user._id, userData: updatedData })).unwrap();
             toast.success('Profile updated successfully');
         } catch (error) {
+            console.log("🚀 ~ handleSave ~ error:", error)
             toast.error('Failed to update profile');
         }
 

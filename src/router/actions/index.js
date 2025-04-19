@@ -33,10 +33,10 @@ export const loginAction = (store) => async ({ request }) => {
       toast.error(errorMessage)
       return null 
     }
-  }
+}
 
 
-  export const registerAction = (store) => async ({ request }) =>{
+export const registerAction = (store) => async ({ request }) =>{
     // console.log(store)
     // console.log(request)
   
@@ -57,4 +57,4 @@ export const loginAction = (store) => async ({ request }) => {
       toast.error(errorMessage)
       return null
     }
-  }
+}

@@ -2,21 +2,37 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "../layouts/Layout";
 import Error from "../pages/Error";
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import ProductDetails from "../pages/ProductDetails";
-import Cart from "../pages/Cart";
-import Checkout from "../pages/Checkout";
-import Orders from "../pages/Orders";
-import AddProduct from "../pages/AddProduct";
-import Edit from "../pages/Edit";
-import Profile from "../pages/Profile";
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
+// import Home from "../pages/Home";
+// import Product from "../pages/Product";
+// import ProductDetails from "../pages/ProductDetails";
+// import Cart from "../pages/Cart";
+// import Checkout from "../pages/Checkout";
+// import Orders from "../pages/Orders";
+// import AddProduct from "../pages/AddProduct";
+// import Edit from "../pages/Edit";
+// import Profile from "../pages/Profile";
+// import Login from "../pages/auth/Login";
+// import Register from "../pages/auth/Register";
 
 import { store } from "../store";
 import { addProductLoader, checkoutLoader, editLoader, homeLoader, ordersLoader, productLoader } from "./loaders/loaders";
 import { loginAction, registerAction } from "./actions";
+import { lazy, Suspense } from "react";
+import Loading from "../components/Loading";
+
+
+const Home = lazy(() => import("../pages/Home"));
+const Product = lazy(() => import("../pages/Product"));
+const ProductDetails = lazy(() => import("../pages/ProductDetails"));
+const Cart = lazy(() => import("../pages/Cart"));
+const Checkout = lazy(() => import("../pages/Checkout"));
+const Orders = lazy(() => import("../pages/Orders"));
+const AddProduct = lazy(() => import("../pages/AddProduct"));
+const Edit = lazy(() => import("../pages/Edit"));
+const Profile = lazy(() => import("../pages/Profile"));
+const Login = lazy(() => import("../pages/auth/Login"));
+const Register = lazy(() => import("../pages/auth/Register"));
+
 
 const router = createBrowserRouter([
   {
@@ -70,7 +86,11 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Login />,
+    element: (
+        <Suspense fallback={<Loading />}>
+            <Login />
+        </Suspense>
+    ),
     action: loginAction(store),
   },
   {

@@ -127,6 +127,14 @@ const ProductDetails = () => {
 
     const outOfStock = product.stock === 0
 
+    if (!product._id) {
+      return (
+        <div className='h-screen flex items-center justify-center'>
+            <span className="loading loading-dots loading-lg"></span>
+        </div>
+      );
+    }
+
   return (
     <>
       {/* <ProductCarousel images={productImages}/> */}
