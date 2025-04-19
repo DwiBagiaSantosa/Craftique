@@ -1,23 +1,9 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Filter from '../components/Filter'
 import ProductCard from '../components/ProductCard'
 import { useLoaderData, Link } from 'react-router-dom'
-import customAPI from '../api'
 import Pagination from '../components/Pagination'
 import { useSelector } from 'react-redux'
-
-export const loader = async({request}) => {
-  const params = Object.fromEntries([...new URL(request.url).searchParams.entries()])
-  const { data } = await customAPI.get('/product', {params: params})
-
-  const products = data.data
-  // console.log("🚀 ~ loader ~ products:", products)
-
-  const pagination = data.pagination
-  // console.log("🚀 ~ loader ~ pagination:", pagination)
-
-  return { products, pagination, params }
-}
 
 const Product = () => {
   const { products, pagination, params } = useLoaderData()

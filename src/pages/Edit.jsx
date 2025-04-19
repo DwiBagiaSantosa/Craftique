@@ -7,21 +7,6 @@ import { redirect, useNavigate, useParams } from 'react-router-dom'
 import customAPI from '../api'
 import Loading from '../components/Loading'
 
-export const loader = (store) => async() => {
-  const user = store.getState().userState.user
-  if (!user) {
-    toast.warn('Please login first')
-    return redirect('/login')
-  }
-
-  if (user.role !== 'admin') {
-    toast.warn('You cannot access this page')
-    return redirect('/')
-  }
-
-  return null
-}
-
 const Edit = () => {
   
   const [product, setProduct] = useState(null) 

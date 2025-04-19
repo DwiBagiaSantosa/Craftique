@@ -1,36 +1,9 @@
-import React, { useEffect } from 'react'
-import { redirect, useLoaderData } from 'react-router-dom'
-import customAPI from '../api'
-import { toast } from 'react-toastify'
+import { useEffect } from 'react'
+import { useLoaderData } from 'react-router-dom'
 import { priceFormat } from '../utils'
-
-
-export const loader = (storage) => async() => {
-    const user = storage.getState().userState.user
-    // console.log("🚀 ~ loader ~ user:", user.role)
-    if (!user) {
-        toast.warn('Please login first')
-        return redirect('/login')
-    }
-
-    let orders;
-    if(user.role !== 'admin') {
-        const { data } = await customAPI.get('/order/current/user')
-
-        orders = data.data
-        // console.log("🚀 ~ loader ~ orders:", orders)
-    } else {
-        const { data } = await customAPI.get('/order')
-        orders = data.data
-    }
-
-    return {orders}
-}
 
 const Orders = () => {
     const { orders } = useLoaderData()
-
-    
 
     useEffect(() => {
         document.title = "Craftique | Orders"

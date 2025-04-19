@@ -3,23 +3,8 @@ import FormSelect from '../components/Form/FormSelect'
 import FormInput from '../components/Form/FormInput'
 import FormTextArea from '../components/Form/FormTextArea';
 import { toast } from 'react-toastify'
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import customAPI from '../api'
-
-export const loader = (store) => async() => {
-    const user = store.getState().userState.user
-    if (!user) {
-        toast.warn('Please login first')
-        return redirect('/login')
-    }
-
-    if (user.role !== 'admin') {
-        toast.error('You Cannot access this page')
-        return redirect('/')
-    }
-
-    return null
-}
 
 const AddProduct = () => {
   

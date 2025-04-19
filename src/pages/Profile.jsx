@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormInput from '../components/Form/FormInput'
 import FormSelect from '../components/Form/FormSelect'
 import imageNotAvailable from '../assets/Image_not_available.png';
@@ -82,7 +82,7 @@ const Profile = () => {
                 )}
                 <FormInput name="email" label="Email" type="email" defaultValue={formData.email} onChange={handleChange} disabled={!isEditing} />
                 <FormInput name="phoneNumber" label="Phone Number" type="text" defaultValue={formData.phoneNumber ? formData.phoneNumber : null} onChange={handleChange} disabled={!isEditing} placeholder="You Have Not Set Your Phone Number" />
-                <div className='flex justify-center mt-4 justify-between'>
+                <div className='flex mt-4 justify-between'>
                     {isEditing && 
                     <>
                         <button type='button' onClick={() => setIsEditing(false)} className='btn btn-danger w-28'>Cancel</button>

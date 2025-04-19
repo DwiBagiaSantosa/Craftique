@@ -1,106 +1,10 @@
-import React, { useEffect } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { delayForLoading } from "./utils/index.jsx";
+import { useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
 
-// Pages
-import Layout from"./layouts/Layout"
-import Home from "./pages/Home";
-import Product from  "./pages/Product";
-import Login from  "./pages/auth/Login";
-import Register from  "./pages/auth/Register";
-import ProductDetails from  "./pages/ProductDetails";
-import Checkout from  "./pages/Checkout";
-import Cart from  "./pages/Cart";
-import Orders from  "./pages/Orders";
-import AddProduct from  "./pages/AddProduct";
-import Edit from "./pages/Edit.jsx";
-import Error from "./pages/Error.jsx";
-import Profile from "./pages/Profile.jsx";
-
-// Loader
-import { loader as homeLoader } from "./pages/Home.jsx"
-import { loader as productLoader } from "./pages/Product.jsx"
-import { loader as checkoutLoader } from "./pages/Checkout.jsx"
-import { loader as ordersLoader } from "./pages/Orders.jsx"
-import { loader as addProductLoader } from "./pages/AddProduct.jsx"
-import { loader as editLoader } from "./pages/Edit.jsx"
-
-// Action
-import { action as RegisterAction } from "./pages/auth/Register.jsx"
-import { action as LoginAction } from "./pages/auth/Login.jsx"
-
-// Store
-import { store } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, saveCart } from "./features/cartSlice.js";
 
-import Loading from "./components/Loading.jsx";
-
-
-
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-        loader: homeLoader
-      },
-      {
-        path: "products",
-        element: <Product />,
-        loader: productLoader
-      },
-      {
-        path: "products/:id",
-        element: <ProductDetails />,
-      },
-      {
-        path: "cart",
-        element: <Cart />,
-      },
-      {
-        path: "checkout",
-        element: <Checkout />,
-        loader: checkoutLoader(store)
-      },
-      {
-        path: "orders",
-        element: <Orders />,
-        loader: ordersLoader(store)
-      },
-      {
-        path: "products/add",
-        element: <AddProduct />,
-        loader: addProductLoader(store)
-      },
-      {
-        path: "products/edit/:id",
-        element: <Edit />,
-        loader: editLoader(store)
-      },
-      {
-        path: "profile",
-        element: <Profile />
-      }
-    ]
-  },
-  {
-    path: "login",
-    element: <Login />,
-    action: LoginAction(store)
-  },
-  {
-    path: "register",
-    element: <Register />,
-    action: RegisterAction(store)
-  }
-])
+import router from "./router/index.jsx";
 
 function App() {
   const dispatch = useDispatch()

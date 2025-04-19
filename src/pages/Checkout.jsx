@@ -19,16 +19,6 @@ const insertSnapScript = () => {
   })
 }
 
-export const loader = (storage) => () => {
-  const user = storage.getState().userState.user
-  if (!user) {
-    toast.warn('Please login first')
-    return redirect('/login')
-  }
-
-  return null
-}
-
 const Checkout = () => {
   const user = useSelector((state) => state.userState.user)
   // console.log("🚀 ~ Checkout ~ user:", user)

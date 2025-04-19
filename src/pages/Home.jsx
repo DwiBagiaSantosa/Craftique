@@ -6,13 +6,6 @@ import customAPI from '../api'
 import { useLoaderData } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-export const loader = async({request}) => {
-  const { data } = await customAPI.get('/product/newest')
-  const products = data.data
-
-  return { products }
-}
-
 const Home = () => {
   const user = useSelector((state) => state.userState.user)
 
@@ -22,7 +15,7 @@ const Home = () => {
     } else {
       document.title = "Craftique | Home"
     }
-  }, [])
+  }, [user])
   
   const { products } = useLoaderData()
   return (
