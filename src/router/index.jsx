@@ -15,7 +15,7 @@ import Error from "../pages/Error";
 // import Register from "../pages/auth/Register";
 
 import { store } from "../store";
-import { addProductLoader, checkoutLoader, editLoader, homeLoader, ordersLoader, productLoader } from "./loaders/loaders";
+import { addProductLoader, checkoutLoader, editLoader, homeLoader, ordersLoader, productLoader, profileLoader } from "./loaders/loaders";
 import { loginAction, registerAction } from "./actions";
 import { lazy, Suspense } from "react";
 import Loading from "../components/Loading";
@@ -81,6 +81,7 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+        loader: profileLoader
       },
     ],
   },

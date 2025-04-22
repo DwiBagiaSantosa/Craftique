@@ -21,7 +21,7 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async (userId) => {
             cartTotal: data.cartTotal || 0,
         }; // Return only the relevant cart data
     } catch (error) {
-    //   console.error("Failed to fetch cart:",  error.response?.data || error.message);
+      console.error("Failed to fetch cart:",  error.response?.data || error.message);
       throw error;
     }
 });
@@ -45,7 +45,7 @@ export const removeCartItem = createAsyncThunk("cart/removeCartItem", async ({ u
         // console.log("Item removed from backend:", response.data);
         return { productId }; // Return the productId to update the Redux state
     } catch (error) {
-        // console.error("Failed to remove item from backend:", error.response?.data || error.message);
+        console.error("Failed to remove item from backend:", error.response?.data || error.message);
         throw error;
     }
 })

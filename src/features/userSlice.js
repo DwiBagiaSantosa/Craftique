@@ -7,6 +7,7 @@ const initialState = {
 
 export const updateProfile = createAsyncThunk("user/updateProfile", async ({ userId, userData }, { rejectWithValue }) => {
     try {
+        // console.log('🛰️ Sending to backend:', userId, userData); //
         const response = await customAPI.put(`auth/user/${userId}/update`, userData);
         return response.data
     } catch (error) {

@@ -1,6 +1,7 @@
 import { toast } from "react-toastify"
 import customAPI from "../../api"
 import { redirect } from "react-router-dom"
+import { getCurrentUser } from "../../services/authService"
 
 export const homeLoader = async() => {
     const { data } = await customAPI.get('/product/newest')
@@ -70,16 +71,21 @@ export const addProductLoader = (store) => async() => {
 }
 
 export const editLoader = (store) => async() => {
-    const user = store.getState().userState.user
-    if (!user) {
-      toast.warn('Please login first')
-      return redirect('/login')
-    }
-  
-    if (user.role !== 'admin') {
-      toast.warn('You cannot access this page')
-      return redirect('/')
-    }
-  
-    return null
+  const user = store.getState().userState.user
+  if (!user) {
+    toast.warn('Please login first')
+    return redirect('/login')
   }
+
+  if (user.role !== 'admin') {
+    toast.warn('You cannot access this page')
+    return redirect('/')
+  }
+
+  return null
+}
+
+export const profileLoader = async() => {
+  const user = await getCurrentUser()
+  return user.user
+}
